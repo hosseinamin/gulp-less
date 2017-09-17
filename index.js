@@ -37,6 +37,7 @@ module.exports = function (options) {
     less.render(str, opts).then(function(res) {
       file.contents = new Buffer(res.result);
       file.path = gutil.replaceExtension(file.path, '.css');
+      file._result = res;
       if (res.sourcemap) {
         res.sourcemap.file = file.relative;
         res.sourcemap.sources = res.sourcemap.sources.map(function (source) {
